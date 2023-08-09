@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:iti_project_newsapp/cubit/category_cubit.dart';
+import 'package:iti_project_newsapp/cubit/news_api_cubit.dart';
 import 'package:iti_project_newsapp/view/screens/categories_screen.dart';
-import 'package:iti_project_newsapp/view/screens/news_screen.dart';
+import 'package:iti_project_newsapp/view/screens/listview.dart';
 
 
 void main() {
@@ -18,12 +19,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CategoryCubit(),
-      child: const MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: ((context) => CategoryCubit())
+        ),
+        // BlocProvider(create: ((context) => NewsApiCubit())
+        // )
+      ],
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: newsScreen(),
-        //categoriesScreen(),
+        home: categoriesScreen(),
+        // newsScreen(),
+
       ),
     );
   }

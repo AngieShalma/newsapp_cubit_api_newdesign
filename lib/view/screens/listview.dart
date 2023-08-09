@@ -1,20 +1,38 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iti_project_newsapp/cubit/news_api_cubit.dart';
-
+import 'package:iti_project_newsapp/view/screens/webView_screen.dart';
 import '../../cubit/category_cubit.dart';
 
-class newsScreen extends StatelessWidget {
-  const newsScreen({Key? key}) : super(key: key);
+class listview extends StatefulWidget {
+  const listview({Key? key}) : super(key: key);
+
+  @override
+  State<listview> createState() => _listviewState();
+}
+
+class _listviewState extends State<listview> {
+  void initState() {
+    // Timer(Duration(),(){
+    //   context.read<CategoryCubit>().getlist(
+    //       cat:context.read<CategoryCubit>().cat,
+    //       scr:context.read<CategoryCubit>().sorce[0]["Url"]);
+    // });
+    Future.delayed(Duration.zero,(){
+      context.read<CategoryCubit>().getlist(
+          cat:context.read<CategoryCubit>().cat,
+          scr:context.read<CategoryCubit>().sorce[0]["Url"]);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final cubit=context.read<CategoryCubit>();
   return BlocBuilder<CategoryCubit, CategoryState>(
   builder: (context, state) {
-    return Column(
-    children: [
-      ListView.separated(
+    return cubit.loading? Center(child: CircularProgressIndicator(),):ListView.separated(
           itemBuilder: (context,index){
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -29,11 +47,11 @@ class newsScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: FadeInImage.assetNetwork(
-                          placeholder:"images/placeholper_image.jpg",
+                          placeholder:"assets/images/placeholper_image.jpg",
                           fit: BoxFit.cover,
-                          image: "${cubit.datalist[index]["urlToImage"]}",
+                          image:"${cubit.listviewdata[index]["urlToImage"]}",
                           imageErrorBuilder: (a,b,c){
-                            return Image.asset("images/placeholper_image.jpg");
+                            return Image.asset("assets/images/placeholper_image.jpg");
                           },
                         )
                     ),
@@ -42,9 +60,11 @@ class newsScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("${context.read<NewsApiCubit>().datalist[index]["title"]}",overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,color: provider.colortext),maxLines: 3,),
-                          Text("${context.read<NewsApiCubit>().datalist[index]["publishedAt"]}",
+                          Text("${cubit.listviewdata[index]["title"]}"
+                            ,overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,color: cubit.colortext),maxLines: 3,),
+                          Text("${cubit.listviewdata[index]["publishedAt"]}"
+                            ,
                             style: TextStyle(fontSize: 15,color: cubit.colorDate),)
 
                         ],),
@@ -52,19 +72,19 @@ class newsScreen extends StatelessWidget {
                   ],
                 ),
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>web_screen(
-                      url: context.read<NewsApiCubit>().datalist[index]["url"],
-                      title: context.read<NewsApiCubit>().datalist[index]["title"])));
+                  cubit.Url=cubit.listviewdata[index]["url"];
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>web_screen()
+                  ));
                 },
               ),
             );
           },
           separatorBuilder: (context, index){
-            return Divider(color:provider.colortext
+            return Divider(color:cubit.colortext
             );
-          }, itemCount: Provider.of<dataprovider>(context).datalist.length),
-    ],
-  );
+          }, itemCount: cubit.listviewdata.length
+      );
+
   },
 );
   }
