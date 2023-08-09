@@ -17,15 +17,12 @@ class web_screen extends StatefulWidget {
 }
 
 class _web_screenState extends State<web_screen> {
-  late final WebViewController controller;
+   late final WebViewController controller;
   @override
   void initState(){
     super.initState();
+    controller=WebViewController()..loadRequest(Uri.parse(context.read<CategoryCubit>().Url));
 
-    Future.delayed(Duration(),()async{
-      controller=WebViewController()..loadRequest(Uri.parse(context.read<CategoryCubit>().Url));
-     // if(Platform.isAndroid) WebView.platform=AndroidWebView();
-    });
   }
   @override
   Widget build(BuildContext context) {

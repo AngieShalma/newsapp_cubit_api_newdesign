@@ -20,116 +20,79 @@ class _categoriesScreenState extends State<categoriesScreen> {
     final searchController=TextEditingController();
     final cubit=context.read<CategoryCubit>();
     return Scaffold(
-      backgroundColor: Color(0xffC8B1E6),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: InkWell(
+          onTap: (){},
+            child: Icon(Icons.menu,size: 30,color: Colors.black,)),
+        title: Text("Categories",style: TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.bold),),
+          centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+                onTap: (){},
+                child: Icon(Icons.search,size: 30,color: Colors.black,)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+                onTap: (){},
+                child: Icon(Icons.wb_sunny_outlined,size: 30,color: Colors.black,)),
+          ),
+        ],
+      ),
+      backgroundColor:Colors.black,
+      //Colors.white.withOpacity(0.9), //Color(0xffC8B1E6),
       body: SafeArea(
         child: BlocBuilder<CategoryCubit, CategoryState>(
   builder: (context, state) {
-    return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 18.0),
+        child: ListView.separated(
+
+            itemCount: cubit.categories.length,
+            itemBuilder: (context,index)=> Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.menu,size: 30,),
-                  SizedBox(width: 20,),
-                  Container(
-                     height: 50,
-                     width: 300,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25)
-                    ),
+              child:  GestureDetector(
+                onTap: (){
+                  cubit.cat=cubit.categories[index]["cat"];
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>homeScreen()));
+                },
+             child:
+                Container(
+                  height: 100,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only( topRight:  Radius.circular(40)),
+                      image: DecorationImage(
+                           colorFilter: ColorFilter.mode(cubit.categories[index]["color"].withOpacity(0.8), BlendMode.color),
+                          image:AssetImage(cubit.categories[index]["image"],),
+                          fit: BoxFit.fill
+                      )
 
-                    child: TextFormField(
-                      controller: searchController,
-                      onChanged: (value){
-                        searchController.text!=value;
-                        setState(() {
-
-                        });
-                      },
-                      onTap: (){
-                         Navigator.push(context, MaterialPageRoute(builder: (context)=>search()));
-                      },
-                      decoration: InputDecoration(
-
-                        hintText: '  search...',
-                        suffixIcon: const Icon(Icons.search,color: Colors.grey,size: 30,),
-                        enabledBorder: OutlineInputBorder(
-
-                         borderRadius: BorderRadius.circular(25),
-                            borderSide: const BorderSide(
-                            color:  Color(0xffC8B1E6)
-
-                            )
-
-                        ),
-
-                        focusedBorder:  OutlineInputBorder(
-
-                          borderRadius: BorderRadius.circular(25),
-
-                        ),
-                        focusColor: Colors.grey
-                      ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.health_and_safety,size: 30,),
+                        SizedBox(width: MediaQuery.of(context).size.width*.02,),
+                        Text(cubit.categories[index]["title"],style: const TextStyle(
+                            color:Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
+                        ),),
+                      ],
                     ),
                   ),
-                  Spacer(),
-                  Icon(Icons.wb_sunny_outlined,size: 30,color: Colors.black,),
-                ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Categories",style: TextStyle(color: Colors.black,fontSize: 40,fontWeight: FontWeight.bold),),
-            ),
-            Expanded(
-              child: ListView.separated(
-
-                  itemCount: cubit.categories.length,
-                  itemBuilder: (context,index)=> Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child:  GestureDetector(
-                      onTap: (){
-                        cubit.cat=cubit.categories[index]["cat"];
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>homeScreen()));
-                      },
-                      child: Container(
-                        height: 100,
-                        width: 200,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            image: DecorationImage(
-
-                                image:AssetImage(cubit.categories[index]["image"],),
-                                fit: BoxFit.fill
-                            )
-
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.health_and_safety,size: 30,),
-                              SizedBox(width: MediaQuery.of(context).size.width*.02,),
-                              Text(cubit.categories[index]["title"],style: const TextStyle(
-                                  color:Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold
-                              ),),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ), separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,) ;},),
-            ),
-
-          ],
-        );
+            ), separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 20,) ;},),
+      ),
+    );
   },
 ),
       ),

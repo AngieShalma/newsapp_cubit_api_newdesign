@@ -16,13 +16,11 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   void initState() {
-    // Timer(Duration( ),(){
-    //    context.read<CategoryCubit>().getsorce(cat:context.read<CategoryCubit>().cat);
-    //   // context.read<CategoryCubit>().getlist(cat:context.read<CategoryCubit>().cat,
-    //   //     scr:context.read<CategoryCubit>().sorce[0]["Url"]);
-    // });
-    Future.delayed(Duration(seconds: 3),(){
-      context.read<CategoryCubit>().getsorce(cat:context.read<CategoryCubit>().cat);
+
+   Future.delayed(Duration(),()async{
+    await  context.read<CategoryCubit>().getsorce(cat:context.read<CategoryCubit>().cat);
+     await context.read<CategoryCubit>().getlist(cat:context.read<CategoryCubit>().cat,
+         scr:context.read<CategoryCubit>().sorce[0]["Url"]);
     });
     super.initState();
   }

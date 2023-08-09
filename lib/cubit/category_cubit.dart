@@ -10,12 +10,12 @@ part 'category_state.dart';
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitial());
   List categories= [
-    {"image":"assets/images/environment.jpeg","title":"general","color":Colors.purple,"icon":Icon(Icons.health_and_safety),"cat":"general"},
+    {"image":"assets/images/environment.jpeg","title":"general","color":Colors.grey,"icon":Icon(Icons.health_and_safety),"cat":"general"},
     {"image":"assets/images/sports.jpeg","title":"sports","color":Colors.red,"icon":Icon(Icons.health_and_safety),"cat":"sports"},
-    {"image":"assets/images/health.jpeg","title":"health","color":Colors.pinkAccent,"icon":Icon(Icons.health_and_safety),"cat":"health"},
+    {"image":"assets/images/health.jpeg","title":"health","color":Colors.brown,"icon":Icon(Icons.health_and_safety),"cat":"health"},
     {"image":"assets/images/buisness.jpeg","title":"business","color":Colors.brown,"icon":Icon(Icons.health_and_safety),"cat":"business"},
-    {"image":"assets/images/entertainment.jpeg","title":"entertainment","color":Colors.blue,"icon":Icon(Icons.health_and_safety),"cat":"entertainment"},
-    {"image":"assets/images/science.jpeg","title":"science","color":Colors.amber,"icon":Icon(Icons.health_and_safety),"cat":"science"},
+    {"image":"assets/images/entertainment2.jpeg","title":"entertainment","color":Colors.yellow,"icon":Icon(Icons.health_and_safety),"cat":"entertainment"},
+    {"image":"assets/images/science.jpeg","title":"science","color":Colors.purpleAccent,"icon":Icon(Icons.health_and_safety),"cat":"science"},
     {"image":"assets/images/technology.jpeg","title":"technology","color":Colors.cyan,"icon":Icon(Icons.health_and_safety),"cat":"technology"},
   ];
   bool colormode=false;

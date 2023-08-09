@@ -14,16 +14,7 @@ class listview extends StatefulWidget {
 
 class _listviewState extends State<listview> {
   void initState() {
-    // Timer(Duration(),(){
-    //   context.read<CategoryCubit>().getlist(
-    //       cat:context.read<CategoryCubit>().cat,
-    //       scr:context.read<CategoryCubit>().sorce[0]["Url"]);
-    // });
-    Future.delayed(Duration.zero,(){
-      context.read<CategoryCubit>().getlist(
-          cat:context.read<CategoryCubit>().cat,
-          scr:context.read<CategoryCubit>().sorce[0]["Url"]);
-    });
+
     super.initState();
   }
 
@@ -32,7 +23,8 @@ class _listviewState extends State<listview> {
     final cubit=context.read<CategoryCubit>();
   return BlocBuilder<CategoryCubit, CategoryState>(
   builder: (context, state) {
-    return cubit.loading? Center(child: CircularProgressIndicator(),):ListView.separated(
+    return cubit.loading? Center(child: CircularProgressIndicator(),):
+    ListView.separated(
           itemBuilder: (context,index){
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
