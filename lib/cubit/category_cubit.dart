@@ -1,6 +1,4 @@
-
 import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -10,32 +8,32 @@ part 'category_state.dart';
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitial());
   List categories= [
-    {"image":"assets/images/environment.jpeg","title":"general","color":Colors.grey,"icon":Icon(Icons.health_and_safety),"cat":"general"},
-    {"image":"assets/images/sports.jpeg","title":"sports","color":Colors.red,"icon":Icon(Icons.health_and_safety),"cat":"sports"},
-    {"image":"assets/images/health.jpeg","title":"health","color":Colors.brown,"icon":Icon(Icons.health_and_safety),"cat":"health"},
-    {"image":"assets/images/buisness.jpeg","title":"business","color":Colors.brown,"icon":Icon(Icons.health_and_safety),"cat":"business"},
-    {"image":"assets/images/entertainment2.jpeg","title":"entertainment","color":Colors.yellow,"icon":Icon(Icons.health_and_safety),"cat":"entertainment"},
-    {"image":"assets/images/science.jpeg","title":"science","color":Colors.purpleAccent,"icon":Icon(Icons.health_and_safety),"cat":"science"},
-    {"image":"assets/images/technology.jpeg","title":"technology","color":Colors.cyan,"icon":Icon(Icons.health_and_safety),"cat":"technology"},
+    {"image":"assets/images/environment.jpeg","title":"general","color":Colors.grey,"icon":Icons.find_in_page,"cat":"general"},
+    {"image":"assets/images/sports.jpeg","title":"sports","color":Colors.purple,"icon":Icons.sports,"cat":"sports"},
+    {"image":"assets/images/health.jpeg","title":"health","color":Colors.transparent,"icon":Icons.health_and_safety,"cat":"health"},
+    {"image":"assets/images/buisness.jpeg","title":"business","color":Colors.brown,"icon":Icons.business,"cat":"business"},
+    {"image":"assets/images/entertainment2.jpeg","title":"entertainment","color":Colors.yellow,"icon":Icons.celebration,"cat":"entertainment"},
+    {"image":"assets/images/science.jpeg","title":"science","color":Colors.purpleAccent,"icon":Icons.science,"cat":"science"},
+    {"image":"assets/images/technology.jpeg","title":"technology","color":Colors.cyan,"icon":Icons.biotech,"cat":"technology"},
   ];
   bool colormode=false;
-  Color colorscreen=Colors.white;
+  Color colorscreen=Colors.white10;
   Color colorDate=Colors.grey;
   Color colortext=Colors.black;
-  Color colorappbar=Colors.deepOrange;
+  Color colorappbar=Colors.purple;
   changemode(){
     colorscreen=colormode==true ?Colors.white:Colors.black12;
-    emit(state);
+    emit(changeScreenColorState());
     colortext=colormode==true ?Colors.black:Colors.white;
-    emit(state);
+    emit(changeTextColorState());
     colorDate=colormode==true ?Colors.grey:Colors.white38;
-    emit(state);
+    emit(changeDateColorState());
     colormode=!colormode;
-    emit(state);
+    emit(changeColorModeState());
   }
 
   bool load = true;
-  List sorce=[];
+  List source=[];
   late String cat;
   getsorce({required String cat}) async {
     load = true;
@@ -45,8 +43,8 @@ class CategoryCubit extends Cubit<CategoryState> {
         "https://newsapi.org/v2/top-headlines/sources?category=$cat&apiKey=a0f9850820d142a8a9fdc1afbb7844e1"));
     if (res.statusCode == 200) {
 
-      sorce = json.decode(res.body)["sources"];
-      print(sorce.length);
+      source = json.decode(res.body)["sources"];
+      print(source.length);
         emit(GetDataFromApi());
     }
     else{
@@ -101,9 +99,9 @@ class CategoryCubit extends Cubit<CategoryState> {
     emit(changeCategoriesindexState());
   }
 
-  int indexSorce=0;
+  int indexSource=0;
   changeSorceindex({required newindex}){
-    indexSorce=newindex;
+    indexSource=newindex;
     emit(changeSorceindexState());
   }
 }

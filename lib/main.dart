@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iti_project_newsapp/cubit/category_cubit.dart';
 import 'package:iti_project_newsapp/cubit/news_api_cubit.dart';
 import 'package:iti_project_newsapp/view/screens/categories_screen.dart';
-import 'package:iti_project_newsapp/view/screens/listview.dart';
+import 'package:iti_project_newsapp/view/widgets/listview.dart';
 
 
 void main() {

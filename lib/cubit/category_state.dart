@@ -22,3 +22,7 @@ class StartLoadingSearchState extends CategoryState {}
 class GetSearchDataFromApi extends CategoryState {}
 class EndLoadingSearchState extends CategoryState {}
 
+class changeScreenColorState extends CategoryState {}
+class changeTextColorState extends CategoryState {}
+class changeDateColorState extends CategoryState {}
+class changeColorModeState extends CategoryState {}

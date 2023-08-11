@@ -7,7 +7,7 @@ import 'package:iti_project_newsapp/view/screens/webView_screen.dart';
 import 'package:provider/provider.dart';
 
 
-import 'listview.dart';
+import '../widgets/listview.dart';
 class search extends StatelessWidget {
   search({Key? key}) : super(key: key);
 

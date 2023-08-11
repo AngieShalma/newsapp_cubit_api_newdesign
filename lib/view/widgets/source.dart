@@ -4,24 +4,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iti_project_newsapp/cubit/category_cubit.dart';
 import 'package:provider/provider.dart';
 
-class sorce extends StatefulWidget {
+class sourceScreen extends StatefulWidget {
 
 
-  const sorce({Key? key})
+  const sourceScreen({Key? key})
       : super(key: key);
 
   @override
-  State<sorce> createState() => _sorceState();
+  State<sourceScreen> createState() => _sourceScreenState();
 }
 
-class _sorceState extends State<sorce> {
+class _sourceScreenState extends State<sourceScreen> {
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<CategoryCubit>();
     return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
-        return cubit.load? Center(child: CircularProgressIndicator(),):Container(
+        return cubit.load? Center(child: CircularProgressIndicator(color: Colors.purple,),):Container(
           alignment: Alignment.center,
           height: MediaQuery.of(context).size.height * 0.13,
           child: ListView.separated(
@@ -34,13 +34,13 @@ class _sorceState extends State<sorce> {
                   padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: cubit.indexSorce == index
-                          ? Colors.deepOrange
+                      color: cubit.indexSource == index
+                          ? Colors.purple
                           : context.read<CategoryCubit>().colorscreen,
                       borderRadius: BorderRadius.circular(25),
-                      border: Border.all(color: Colors.deepOrange, width: 2)),
+                      border: Border.all(color: Colors.purple, width: 2)),
                   child: Text(
-                    "${cubit.sorce[index]["name"]}",
+                    "${cubit.source[index]["name"]}",
                     style: TextStyle(
                         color: context.read<CategoryCubit>().colortext,
                         fontWeight: FontWeight.w900,
@@ -51,15 +51,15 @@ class _sorceState extends State<sorce> {
                 ),
                 onTap: () {
                   cubit.getlist(
-                      cat: cubit.cat, scr: cubit.sorce[index]["Url"]);
+                      cat: cubit.cat, scr: cubit.source[index]["Url"]);
                   cubit.changeSorceindex(newindex:index );
                 },
               );
             },
-            itemCount: cubit.sorce.length,
+            itemCount: cubit.source.length,
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
-                width: MediaQuery.of(context).size.width * 0.02,
+                width: MediaQuery.of(context).size.width * 0.05,
               );
             },
           ),
