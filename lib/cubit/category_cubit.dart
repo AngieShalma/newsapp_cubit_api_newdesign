@@ -8,19 +8,19 @@ part 'category_state.dart';
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitial());
   List categories= [
-    {"image":"assets/images/environment.jpeg","title":"general","color":Colors.grey,"icon":Icons.find_in_page,"cat":"general"},
-    {"image":"assets/images/sports.jpeg","title":"sports","color":Colors.purple,"icon":Icons.sports,"cat":"sports"},
-    {"image":"assets/images/health.jpeg","title":"health","color":Colors.transparent,"icon":Icons.health_and_safety,"cat":"health"},
-    {"image":"assets/images/buisness.jpeg","title":"business","color":Colors.brown,"icon":Icons.business,"cat":"business"},
-    {"image":"assets/images/entertainment2.jpeg","title":"entertainment","color":Colors.yellow,"icon":Icons.celebration,"cat":"entertainment"},
-    {"image":"assets/images/science.jpeg","title":"science","color":Colors.purpleAccent,"icon":Icons.science,"cat":"science"},
-    {"image":"assets/images/technology.jpeg","title":"technology","color":Colors.cyan,"icon":Icons.biotech,"cat":"technology"},
+    {"image":"assets/images/environment.jpeg","title":"general","color":Color(0xffFBE4D8),"icon":Icons.find_in_page,"cat":"general"},
+    {"image":"assets/images/sports.jpeg","title":"sports","color":Color(0xffDFB6B2),"icon":Icons.sports,"cat":"sports"},
+    {"image":"assets/images/health.jpeg","title":"health","color":Color(0xff854F6C),"icon":Icons.health_and_safety,"cat":"health"},
+    {"image":"assets/images/buisness.jpeg","title":"business","color":Color(0xff522B5B),"icon":Icons.business,"cat":"business"},
+    {"image":"assets/images/entertainment2.jpeg","title":"entertainment","color":Color(0xff9873D3),"icon":Icons.celebration,"cat":"entertainment"},
+    {"image":"assets/images/science.jpeg","title":"science","color":Color(0xff2B124C),"icon":Icons.science,"cat":"science"},
+    {"image":"assets/images/technology.jpeg","title":"technology","color":Color(0xff190019),"icon":Icons.biotech,"cat":"technology"},
   ];
   bool colormode=false;
-  Color colorscreen=Colors.white10;
+  Color colorscreen=Colors.white.withOpacity(0.8);//Color(0xffFBE4D8);
   Color colorDate=Colors.grey;
   Color colortext=Colors.black;
-  Color colorappbar=Colors.purple;
+  Color colorappbar=Color(0xff522B5B);
   changemode(){
     colorscreen=colormode==true ?Colors.white:Colors.black12;
     emit(changeScreenColorState());
@@ -31,6 +31,7 @@ class CategoryCubit extends Cubit<CategoryState> {
     colormode=!colormode;
     emit(changeColorModeState());
   }
+
 
   bool load = true;
   List source=[];

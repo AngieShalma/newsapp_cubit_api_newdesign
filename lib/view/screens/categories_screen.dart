@@ -57,7 +57,7 @@ class _categoriesScreenState extends State<categoriesScreen> {
         ],
       ),
       drawer: drawer(),
-      backgroundColor:Colors.white,
+      backgroundColor:cubit.colorscreen,
       //Colors.white.withOpacity(0.9), //Color(0xffC8B1E6),
       body: SafeArea(
         child: BlocBuilder<CategoryCubit, CategoryState>(
@@ -82,11 +82,11 @@ class _categoriesScreenState extends State<categoriesScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only( topRight:  Radius.circular(40)),
                       image: DecorationImage(
-                           colorFilter: ColorFilter.mode(cubit.categories[index]["color"].withOpacity(0.8), BlendMode.color),
+                           colorFilter: ColorFilter.mode(cubit.categories[index]["color"].withOpacity(0.1), BlendMode.color),
                           image:AssetImage(cubit.categories[index]["image"],),
                           fit: BoxFit.fill
-                      )
-
+                      ),
+                         color: cubit.categories[index]["color"]
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

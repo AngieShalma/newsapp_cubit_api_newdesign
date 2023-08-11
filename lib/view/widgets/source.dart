@@ -35,10 +35,10 @@ class _sourceScreenState extends State<sourceScreen> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: cubit.indexSource == index
-                          ? Colors.purple
+                          ? Color(0xff522B5B)
                           : context.read<CategoryCubit>().colorscreen,
                       borderRadius: BorderRadius.circular(25),
-                      border: Border.all(color: Colors.purple, width: 2)),
+                      border: Border.all(color: Color(0xff522B5B), width: 2)),
                   child: Text(
                     "${cubit.source[index]["name"]}",
                     style: TextStyle(
