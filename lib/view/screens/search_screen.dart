@@ -53,15 +53,15 @@ class search extends StatelessWidget {
                           }
                           cubit.Searchlist=[];
                           Navigator.pop(context);},
-                        icon: const Icon(Icons.close,color: Colors.deepOrange,size: 30,),),
-                      suffixIcon:const Icon(Icons.search,size: 30,color: Colors.deepOrange,) ,
+                        icon: const Icon(Icons.close,color: Color(0xff522B5B),size: 30,),),
+                      suffixIcon:const Icon(Icons.search,size: 30,color: Color(0xff522B5B),) ,
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
-                          borderSide: const BorderSide(color: Colors.deepOrange,)
+                          borderSide: const BorderSide(color: Color(0xff522B5B),)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
-                          borderSide: const BorderSide(color: Colors.deepOrange,)
+                          borderSide: const BorderSide(color: Color(0xff522B5B),)
                       ),
                     ),
                     onChanged: (value){

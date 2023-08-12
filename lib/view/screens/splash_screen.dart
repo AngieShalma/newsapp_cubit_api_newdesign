@@ -21,26 +21,26 @@ class _splashScreenState extends State<splashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration( seconds: 5),(){
-      // setState(() {
-      //   isLoading=false;
-      // });
+      setState(() {
+        isLoading=false;
+      });
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>onboardingScreen()));
     });
     Future.delayed(Duration(seconds:5),(){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>onboardingScreen()));
 
-      // setState(() {
-      //   isLoading=false;
-      // });
+      setState(() {
+        isLoading=false;
+      });
     });
   }
   Widget build(BuildContext context) {
-    return //isLoading?
+    return isLoading?
     Center(
       child: Container(
         height:double.infinity,
         color: Colors.white,
           child: Lottie.asset("assets/images/online-news-8644121-6879411.mp4.lottie.json")),
-    );//:categoriesScreen();
+    ):categoriesScreen();
   }
 }
